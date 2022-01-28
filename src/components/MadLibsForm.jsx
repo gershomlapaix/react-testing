@@ -1,10 +1,10 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-export function MadLibsForm({answers, setAnswers}) {
+export function MadLibsForm({ answers, setAnswers }) {
 
     const [validForm, setValidForm] = useState(false)
     const handleClick = () => {
-        setAnswers({...answers, answersEntered: true})
+        setAnswers({ ...answers, answersEntered: true })
     }
 
     const sections = [
@@ -36,7 +36,7 @@ export function MadLibsForm({answers, setAnswers}) {
     }, [answers])
 
     const handleChange = (e) => {
-        setAnswers({...answers, [e.target.name]: e.target.value})
+        setAnswers({ ...answers, [e.target.name]: e.target.value })
     }
 
     const startsWithVowel = (word) => {
@@ -48,29 +48,30 @@ export function MadLibsForm({answers, setAnswers}) {
     }
 
     return (
-        <section  className={'form'}>
+        <section className={'form'}>
             <h2>Enter Your Choices!</h2>
             <table>
                 <tbody>
-                {sections.map((section) => {
-                    return (
-                        <tr key={section}>
-                            <td>Please write {startsWithVowel(section) ? "an" : "a"} {section}:</td>
-                            <td>
-                                <input
-                                    name={section}
-                                    id={section}
-                                    type='text'
-                                    value={answers[section]}
-                                    onChange={handleChange} />
-                            </td>
-                        </tr>)})}
+                    {sections.map((section) => {
+                        return (
+                            <tr key={section}>
+                                <td>Please write {startsWithVowel(section) ? "an" : "a"} {section}:</td>
+                                <td>
+                                    <input
+                                        name={section}
+                                        id={section}
+                                        type='text'
+                                        value={answers[section]}
+                                        onChange={handleChange} />
+                                </td>
+                            </tr>)
+                    })}
                 </tbody>
             </table>
             <button
                 disabled={!validForm}
                 onClick={handleClick}
-                style={{marginTop: '1rem'}}>Complete</button>
+                style={{ marginTop: '1rem' }}>Complete</button>
         </section>
     )
 }
